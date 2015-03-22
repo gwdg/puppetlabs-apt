@@ -64,7 +64,10 @@ class apt(
   $update_timeout       = undef,
   $update_tries         = undef,
   $sources              = undef,
-  $fancy_progress       = undef
+  $fancy_progress       = undef,
+
+  # New parameters
+  $ppas                 = undef
 ) {
 
   if $::osfamily != 'Debian' {
@@ -213,4 +216,11 @@ class apt(
     validate_hash($sources)
     create_resources('apt::source', $sources)
   }
+
+  # manage ppas if present
+  if $ppas != undef {
+    validate_hash($ppas)
+    create_resources('apt::ppa', $ppas)
+  }
+
 }
