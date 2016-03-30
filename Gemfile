@@ -17,7 +17,12 @@ group :development, :unit_tests do
   gem 'metadata-json-lint',        :require => false
   gem 'puppet_facts',              :require => false
   gem 'puppetlabs_spec_helper',    :require => false
-  gem 'rspec-puppet', '>= 2.3.2',  :require => false
+
+  # Modulesync will override the following. This is only a temporary measure until we fix
+  # our tests for rspec-puppet 2.4.0 support.
+  # Actual update work to be done in https://tickets.puppetlabs.com/browse/FM-5035
+  gem 'rspec-puppet', '= 2.3.2',   :require => false
+  
   gem 'simplecov',                 :require => false
   gem 'puppet-blacksmith',         :require => false
   gem 'rest-client', '~> 1.8.0',   :require => false
